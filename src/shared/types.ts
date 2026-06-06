@@ -26,3 +26,10 @@ export interface Domain {
   /** Производное: среднее уровней тем. */
   level: number
 }
+
+/** Снимок состояния vault для renderer: путь к базе знаний и собранное дерево. */
+export interface VaultState {
+  /** Путь к папке базы знаний, либо null, если ещё не выбран. */
+  path: string | null
+  tree: Domain[]
+}

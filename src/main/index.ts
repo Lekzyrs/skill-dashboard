@@ -1,5 +1,6 @@
-import { app, BrowserWindow, ipcMain } from 'electron'
+import { app, BrowserWindow } from 'electron'
 import { join } from 'node:path'
+import { registerVaultIpc } from './ipc'
 
 function createWindow(): void {
   const win = new BrowserWindow({
@@ -27,8 +28,7 @@ function createWindow(): void {
 }
 
 app.whenReady().then(() => {
-  // Заглушка IPC для проверки моста на Фазе 1. Реальные vault-каналы добавим позже.
-  ipcMain.handle('ping', () => 'pong')
+  registerVaultIpc()
 
   createWindow()
 
