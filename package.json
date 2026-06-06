@@ -11,9 +11,12 @@
     "start": "electron-vite preview",
     "typecheck:node": "tsc --noEmit -p tsconfig.node.json",
     "typecheck:web": "tsc --noEmit -p tsconfig.web.json",
-    "typecheck": "npm run typecheck:node && npm run typecheck:web"
+    "typecheck": "npm run typecheck:node && npm run typecheck:web",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
+    "gray-matter": "^4.0.3",
     "react": "^19.2.7",
     "react-dom": "^19.2.7"
   },
@@ -25,6 +28,7 @@
     "electron": "^42.3.3",
     "electron-vite": "^5.0.0",
     "typescript": "^6.0.3",
-    "vite": "^7.3.5"
+    "vite": "^7.3.5",
+    "vitest": "^4.1.8"
   }
 }
