@@ -1,0 +1,240 @@
+.wrap {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 40px 32px 64px;
+}
+
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.heading {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.title {
+  font-size: 1.5rem;
+  letter-spacing: -0.01em;
+}
+
+.overall {
+  font-size: 1.25rem;
+  color: var(--accent);
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.path {
+  max-width: 280px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+.ghost {
+  flex: none;
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-control);
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.8125rem;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.ghost:hover {
+  background: var(--surface-2);
+  color: var(--ink);
+}
+
+.sectionHead {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+/* блок «слабее всего» */
+.weak {
+  margin-bottom: 44px;
+  padding: 18px 20px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-card);
+}
+
+.weakHead {
+  margin-bottom: 12px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.weakList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.weakRow {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 7px 8px;
+  border: none;
+  border-radius: var(--r-control);
+  background: transparent;
+  text-align: left;
+  transition: background var(--dur) var(--ease);
+}
+
+.weakRow:hover {
+  background: var(--surface-2);
+}
+
+.weakDot {
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--muted);
+}
+
+.weakDot.low {
+  background: var(--weak);
+}
+
+.weakName {
+  color: var(--ink);
+  font-size: 0.9rem;
+}
+
+.weakWhere {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 0.8125rem;
+}
+
+.weakLevel {
+  width: 1.4ch;
+  text-align: right;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* список доменов */
+.domains {
+  display: flex;
+  flex-direction: column;
+}
+
+.domains .sectionHead {
+  margin: 0 0 6px 12px;
+}
+
+.domainGroup {
+  border-top: 1px solid var(--line);
+}
+
+.domainGroup:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.domainRow {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  padding: 16px 12px;
+  border: none;
+  background: transparent;
+  text-align: left;
+  transition: background var(--dur) var(--ease);
+}
+
+.domainRow:hover {
+  background: var(--surface);
+}
+
+.topicList {
+  list-style: none;
+  margin: 0;
+  padding: 0 12px 12px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.topicRow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.topicName {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.topicLevel {
+  flex: none;
+  font-size: 0.825rem;
+  color: var(--muted);
+}
+
+.domainName {
+  margin-right: auto;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.dots {
+  display: inline-flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--faint);
+}
+
+.dot.on {
+  background: var(--accent);
+}
+
+.domainLevel {
+  width: 3ch;
+  text-align: right;
+  font-size: 1.0625rem;
+  color: var(--accent);
+}
+
+.footer {
+  margin: 28px 0 0;
+  font-size: 0.8125rem;
+  color: var(--faint);
+}

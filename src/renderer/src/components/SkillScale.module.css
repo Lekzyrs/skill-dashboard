@@ -1,0 +1,59 @@
+.scale {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.step {
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.step:hover:not(:disabled) {
+  background: var(--surface-2);
+  color: var(--ink);
+}
+
+.step:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.dots {
+  display: inline-flex;
+  gap: 5px;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--faint);
+  cursor: pointer;
+  transition: background var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+
+.dot.on {
+  background: var(--accent);
+}
+
+.dot:hover {
+  transform: scale(1.35);
+}
+
+.value {
+  min-width: 1.1ch;
+  text-align: right;
+  color: var(--muted);
+  font-size: 0.85rem;
+}

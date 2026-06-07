@@ -1,0 +1,94 @@
+.app {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.view {
+  animation: viewIn var(--dur-view) var(--ease);
+}
+
+@keyframes viewIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.center {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 80px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.welcomeTitle {
+  font-size: 1.75rem;
+  letter-spacing: -0.01em;
+}
+
+.welcomeText {
+  margin: 0;
+  color: var(--muted);
+}
+
+.primary {
+  padding: 9px 16px;
+  border: none;
+  border-radius: var(--r-control);
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 550;
+  transition: background var(--dur) var(--ease);
+}
+
+.primary:hover {
+  background: var(--accent-2);
+}
+
+.ghost {
+  padding: 7px 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-control);
+  background: transparent;
+  color: var(--muted);
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.ghost:hover {
+  background: var(--surface-2);
+  color: var(--ink);
+}
+
+.skeleton {
+  width: 100%;
+  max-width: 420px;
+  height: 18px;
+  border-radius: 6px;
+  background: var(--surface);
+  animation: pulse 1.4s var(--ease) infinite;
+}
+
+.skeleton:nth-child(2) {
+  max-width: 320px;
+}
+
+.skeleton:nth-child(3) {
+  max-width: 260px;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
