@@ -33,3 +33,12 @@ export interface VaultState {
   path: string | null
   tree: Domain[]
 }
+
+/** Аргументы записи уровня одного навыка обратно в заметку. */
+export interface SetLevelArgs {
+  /** Путь заметки под базой знаний (как в Topic.relativePath). */
+  relativePath: string
+  skillName: string
+  /** Новый уровень 0-10. */
+  level: number
+}

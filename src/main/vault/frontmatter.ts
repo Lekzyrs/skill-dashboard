@@ -1,3 +1,4 @@
+import matter from 'gray-matter'
 import type { Skill } from '../../shared/types'
 
 // Разбивает контент на frontmatter (первый блок ---...---) и тело.
@@ -49,4 +50,19 @@ export function setSkills(content: string, skills: Skill[]): string {
   const newFm = fmClean.length > 0 ? `${fmClean}\n${skillsYaml}` : skillsYaml
   const realBody = hasFm ? body : content
   return `---\n${newFm}\n---\n${realBody}`
+}
+
+/**
+ * Возвращает контент заметки с обновлённым уровнем одного навыка.
+ * Остальные навыки, поля frontmatter и тело сохраняются.
+ */
+export function setSkillLevel(content: string, skillName: string, level: number): string {
+  const { data } = matter(content)
+  const skills: Skill[] = Array.isArray(data.skills)
+    ? (data.skills as Skill[]).map((s) => ({ name: s.name, level: s.level }))
+    : []
+  if (!skills.some((s) => s.name === skillName)) return content
+  const clamped = Math.min(10, Math.max(0, level))
+  const updated = skills.map((s) => (s.name === skillName ? { name: s.name, level: clamped } : s))
+  return setSkills(content, updated)
 }
