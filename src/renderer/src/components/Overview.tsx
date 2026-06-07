@@ -51,25 +51,28 @@ export function Overview({ tree, path, onOpenDomain, onChoose }: Props) {
         <section className={styles.weak} aria-label="Слабее всего">
           <h2 className={styles.weakHead}>Слабее всего</h2>
           <ul className={styles.weakList}>
-            {weak.map((w) => (
-              <li key={`${w.relativePath}:${w.name}`}>
-                <button
-                  type="button"
-                  className={styles.weakRow}
-                  onClick={() => onOpenDomain(w.domain)}
-                >
-                  <span
-                    className={`${styles.weakDot} ${w.level <= WEAK_THRESHOLD ? styles.low : ''}`}
-                    aria-hidden="true"
-                  />
-                  <span className={styles.weakName}>{w.name}</span>
-                  <span className={styles.weakWhere}>
-                    {w.domain} · {w.topicTitle}
-                  </span>
-                  <span className={`num ${styles.weakLevel}`}>{w.level}</span>
-                </button>
-              </li>
-            ))}
+            {weak.map((w, idx) => {
+              const where = `${w.domain} · ${w.topicTitle}`
+              const prev = weak[idx - 1]
+              const sameAsPrev = prev && `${prev.domain} · ${prev.topicTitle}` === where
+              return (
+                <li key={`${w.relativePath}:${w.name}`}>
+                  <button
+                    type="button"
+                    className={styles.weakRow}
+                    onClick={() => onOpenDomain(w.domain)}
+                  >
+                    <span
+                      className={`${styles.weakDot} ${w.level <= WEAK_THRESHOLD ? styles.low : ''}`}
+                      aria-hidden="true"
+                    />
+                    <span className={styles.weakName}>{w.name}</span>
+                    <span className={styles.weakWhere}>{sameAsPrev ? '' : where}</span>
+                    <span className={`num ${styles.weakLevel}`}>{w.level}</span>
+                  </button>
+                </li>
+              )
+            })}
           </ul>
         </section>
       )}
