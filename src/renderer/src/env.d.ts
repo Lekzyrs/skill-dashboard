@@ -9,6 +9,7 @@ declare global {
       getState: () => Promise<VaultState>
       chooseVault: () => Promise<VaultState>
       setLevel: (args: SetLevelArgs) => Promise<VaultState>
+      onVaultChanged: (cb: (state: VaultState) => void) => () => void
     }
   }
 }

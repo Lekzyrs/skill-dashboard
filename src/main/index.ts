@@ -1,6 +1,10 @@
 import { app, BrowserWindow } from 'electron'
 import { join } from 'node:path'
-import { registerVaultIpc } from './ipc'
+import { registerVaultIpc, loadState } from './ipc'
+import { setVaultChangeHandler, startWatching, stopWatching } from './vault/watcher'
+import { getVaultPath } from './config'
+
+let mainWindow: BrowserWindow | null = null
 
 function createWindow(): void {
   const win = new BrowserWindow({
@@ -16,6 +20,7 @@ function createWindow(): void {
     }
   })
 
+  mainWindow = win
   win.on('ready-to-show', () => win.show())
 
   // В dev electron-vite поднимает renderer на URL, в проде грузим собранный html.
@@ -27,10 +32,21 @@ function createWindow(): void {
   }
 }
 
-app.whenReady().then(() => {
+app.whenReady().then(async () => {
   registerVaultIpc()
 
+  // Внешнее изменение базы знаний → перечитать состояние и протолкнуть в renderer.
+  setVaultChangeHandler(async () => {
+    const state = await loadState()
+    if (mainWindow && !mainWindow.isDestroyed()) {
+      mainWindow.webContents.send('vault:changed', state)
+    }
+  })
+
   createWindow()
+
+  const path = await getVaultPath()
+  if (path) startWatching(path)
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow()
@@ -38,5 +54,6 @@ app.whenReady().then(() => {
 })
 
 app.on('window-all-closed', () => {
+  stopWatching()
   if (process.platform !== 'darwin') app.quit()
 })

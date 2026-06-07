@@ -9,6 +9,8 @@ export function App() {
 
   useEffect(() => {
     window.api.getState().then(setState)
+    // Внешние правки заметок (Obsidian и т.п.) — main перечитывает и присылает новое дерево.
+    return window.api.onVaultChanged(setState)
   }, [])
 
   async function choose() {

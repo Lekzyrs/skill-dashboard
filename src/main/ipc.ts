@@ -1,12 +1,14 @@
 import { dialog, ipcMain } from 'electron'
+import { join } from 'node:path'
 import { getVaultPath, setVaultPath } from './config'
 import { readVault } from './vault/read'
 import { writeSkillLevel } from './vault/write'
 import { buildTree } from './vault/parse'
+import { markSelfWrite, startWatching } from './vault/watcher'
 import type { SetLevelArgs, VaultState } from '../shared/types'
 
 // Читает текущее состояние: путь из конфига + собранное дерево.
-async function loadState(): Promise<VaultState> {
+export async function loadState(): Promise<VaultState> {
   const path = await getVaultPath()
   if (!path) return { path: null, tree: [] }
   try {
@@ -28,6 +30,7 @@ export function registerVaultIpc(): void {
     })
     if (res.canceled || res.filePaths.length === 0) return loadState()
     await setVaultPath(res.filePaths[0])
+    startWatching(res.filePaths[0])
     return loadState()
   })
 
@@ -35,6 +38,7 @@ export function registerVaultIpc(): void {
     const path = await getVaultPath()
     if (!path) return loadState()
     try {
+      markSelfWrite(join(path, args.relativePath))
       await writeSkillLevel(path, args.relativePath, args.skillName, args.level)
     } catch (err) {
       console.error('[vault] не удалось записать уровень:', args, err)
