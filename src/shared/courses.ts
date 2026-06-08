@@ -52,7 +52,10 @@ const AST = 'advanced/AST, парсеры, Babel, ESLint - карта.md'
 // --- области вне vault ---
 export const AREAS: Area[] = [
   { id: 'css', label: 'CSS и вёрстка', note: 'Grid, flexbox, адаптив, анимации. База, которую легко недоучить.' },
-  { id: 'testing', label: 'Тестирование', note: 'Unit, интеграционные, e2e. RTL, Vitest, Playwright.' }
+  { id: 'testing', label: 'Тестирование', note: 'Unit, интеграционные, e2e. RTL, Vitest, Playwright.' },
+  { id: 'nextjs', label: 'Next.js', note: 'App Router, серверные компоненты, server actions. Стандарт для React-проектов.' },
+  { id: 'web-perf', label: 'Производительность', note: 'Загрузка, исполнение JS, рендеринг, ре-рендеры React. Core Web Vitals.' },
+  { id: 'a11y', label: 'Доступность', note: 'Семантика, ARIA, фокус, скринридеры, контраст. Спрашивают на собесах.' }
 ]
 
 export const COURSES: Course[] = [
@@ -222,6 +225,79 @@ export const COURSES: Course[] = [
     topics: [],
     areas: ['testing'],
     why: 'Полный курс по тестированию: от основ до React Testing Library и e2e. Автор RTL и идеи «testing trophy». Тестирование почти не покрыто в твоих заметках, а на собесах и в проде спрашивают.'
+  },
+
+  // --- Next.js (область вне vault) ---
+  {
+    id: 'max-nextjs',
+    title: 'Next.js & React - The Complete Guide',
+    author: 'Maximilian Schwarzmüller',
+    platform: 'Udemy',
+    url: 'https://www.udemy.com/course/nextjs-react-the-complete-guide/',
+    hours: 68,
+    level: 'beginner→advanced',
+    access: 'paid',
+    updated: 'январь 2026 (Next.js 15, App Router)',
+    topics: [],
+    areas: ['nextjs'],
+    why: 'Самый полный путь по Next.js: App Router и Pages Router, серверные/клиентские компоненты, server actions, паттерны выборки данных. 4.7, обновлён в 2026. Логичный шаг после базового React.'
+  },
+
+  // --- Производительность (область вне vault) ---
+  {
+    id: 'kinney-js-performance',
+    title: 'JavaScript Performance',
+    author: 'Steve Kinney',
+    platform: 'Frontend Masters',
+    url: 'https://frontendmasters.com/courses/web-performance/',
+    hours: 5,
+    level: 'intermediate',
+    access: 'subscription',
+    updated: 'актуальна',
+    topics: [],
+    areas: ['web-perf'],
+    why: 'Три слоя производительности: сеть, исполнение JS, рендеринг. Объясняет, как браузер парсит и рисует код. Меняет то, как мыслишь о скорости, а не только набор трюков.'
+  },
+  {
+    id: 'kinney-react-performance',
+    title: 'React Performance',
+    author: 'Steve Kinney',
+    platform: 'Frontend Masters',
+    url: 'https://frontendmasters.com/courses/react-performance/',
+    level: 'intermediate→advanced',
+    access: 'subscription',
+    updated: 'включает React 19',
+    topics: [],
+    areas: ['web-perf'],
+    why: 'Прицельно React: reconciliation и ре-рендеры, мемоизация, code splitting, конкурентные фичи React 19. Бери после JavaScript Performance, когда тормозит именно React-приложение.'
+  },
+
+  // --- Доступность (область вне vault) ---
+  {
+    id: 'webdev-a11y',
+    title: 'Learn Accessibility',
+    author: 'web.dev (Google)',
+    platform: 'web.dev',
+    url: 'https://web.dev/learn/accessibility',
+    level: 'beginner→intermediate',
+    access: 'free',
+    updated: 'evergreen',
+    topics: [],
+    areas: ['a11y'],
+    why: 'Бесплатный структурный курс от Google: семантика, клавиатура, ARIA, контраст, формы. Лучшая бесплатная точка входа в a11y, без вложений и регистрации.'
+  },
+  {
+    id: 'kuperman-a11y',
+    title: 'Website Accessibility',
+    author: 'Jon Kuperman',
+    platform: 'Frontend Masters',
+    url: 'https://frontendmasters.com/courses/accessibility-v2/',
+    level: 'beginner→intermediate',
+    access: 'subscription',
+    updated: 'актуальна',
+    topics: [],
+    areas: ['a11y'],
+    why: 'Практическая основа: семантический HTML, ARIA-роли, управление фокусом, контраст. Бери, если после бесплатного web.dev хочешь разобрать руками с преподавателем.'
   }
 ]
 
