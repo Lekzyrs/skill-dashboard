@@ -83,7 +83,7 @@ export const COURSES: Course[] = [
     access: 'paid',
     updated: 'React 19, современный стек (2025)',
     topics: [REACT],
-    why: 'Проектно-ориентированный, с глубокими объяснениями и современным стеком (React Query, Tailwind, Supabase). 4.8 на Udemy. Лучше заходит, если учишься через сборку проектов.'
+    why: 'Проектно-ориентированный, с глубокими объяснениями и современным стеком (React Query, Tailwind, Supabase). 4.7 на Udemy. Лучше заходит, если учишься через сборку проектов.'
   },
   {
     id: 'comeau-joy-of-react',
@@ -163,7 +163,7 @@ export const COURSES: Course[] = [
     hours: 22,
     level: 'beginner→intermediate',
     access: 'paid',
-    updated: 'актуален',
+    updated: 'обновлён 01.2026',
     topics: [BIG_O],
     why: 'От Big O и паттернов (частотный счётчик, два указателя, скользящее окно) до сортировок и структур данных, всё на JS. Эталонный курс по DSA для фронтендера, недорогой.'
   },
@@ -288,16 +288,17 @@ export const COURSES: Course[] = [
   },
   {
     id: 'kuperman-a11y',
-    title: 'Website Accessibility',
+    title: 'Website Accessibility, v3',
     author: 'Jon Kuperman',
     platform: 'Frontend Masters',
-    url: 'https://frontendmasters.com/courses/accessibility-v2/',
+    url: 'https://frontendmasters.com/courses/accessibility-v3/',
+    hours: 2.3,
     level: 'beginner→intermediate',
     access: 'subscription',
-    updated: 'актуальна',
+    updated: 'v3, март 2025',
     topics: [],
     areas: ['a11y'],
-    why: 'Практическая основа: семантический HTML, ARIA-роли, управление фокусом, контраст. Бери, если после бесплатного web.dev хочешь разобрать руками с преподавателем.'
+    why: 'Практическая основа за 2 часа: семантический HTML, ARIA-роли, управление фокусом и tab-trapping, контраст, аудит (Lighthouse, Axe). 4.8. Бери, если после бесплатного web.dev хочешь разобрать руками с преподавателем.'
   }
 ]
 
