@@ -40,6 +40,12 @@
   color: var(--accent);
 }
 
+.subtitle {
+  margin: 10px 0 0;
+  font-size: 0.9375rem;
+  color: var(--muted);
+}
+
 .topic {
   padding: 20px 0;
   border-top: 1px solid var(--line);
@@ -47,6 +53,7 @@
 
 .topic:first-of-type {
   border-top: none;
+  padding-top: 0;
 }
 
 .topicHead {
