@@ -55,7 +55,11 @@ export const AREAS: Area[] = [
   { id: 'testing', label: 'Тестирование', note: 'Unit, интеграционные, e2e. RTL, Vitest, Playwright.' },
   { id: 'nextjs', label: 'Next.js', note: 'App Router, серверные компоненты, server actions. Стандарт для React-проектов.' },
   { id: 'web-perf', label: 'Производительность', note: 'Загрузка, исполнение JS, рендеринг, ре-рендеры React. Core Web Vitals.' },
-  { id: 'a11y', label: 'Доступность', note: 'Семантика, ARIA, фокус, скринридеры, контраст. Спрашивают на собесах.' }
+  { id: 'a11y', label: 'Доступность', note: 'Семантика, ARIA, фокус, скринридеры, контраст. Спрашивают на собесах.' },
+  { id: 'git', label: 'Git', note: 'Ветки, rebase, разрешение конфликтов, история. Ежедневный инструмент.' },
+  { id: 'nodejs', label: 'Node.js / бэкенд', note: 'API, Express, базы. Путь от фронта к фуллстеку на одном языке.' },
+  { id: 'security', label: 'Веб-безопасность', note: 'XSS, CSRF, инъекции, CSP. Что нужно знать любому, кто пишет для веба.' },
+  { id: 'animation', label: 'Анимации', note: 'CSS-анимации, Motion (Framer Motion), производительность, вкус.' }
 ]
 
 export const COURSES: Course[] = [
@@ -299,6 +303,94 @@ export const COURSES: Course[] = [
     topics: [],
     areas: ['a11y'],
     why: 'Практическая основа за 2 часа: семантический HTML, ARIA-роли, управление фокусом и tab-trapping, контраст, аудит (Lighthouse, Axe). 4.8. Бери, если после бесплатного web.dev хочешь разобрать руками с преподавателем.'
+  },
+
+  // --- Git (область вне vault) ---
+  {
+    id: 'colt-git',
+    title: 'The Git & GitHub Bootcamp',
+    author: 'Colt Steele',
+    platform: 'Udemy',
+    url: 'https://www.udemy.com/course/git-and-github-bootcamp/',
+    level: 'beginner→advanced',
+    access: 'paid',
+    updated: 'обновлён 01.2026',
+    topics: [],
+    areas: ['git'],
+    why: 'От базы до rebase, stash, reflog, тегов и внутреннего устройства Git. 4.7, свежий. Бери, если Git дальше add/commit/push пока туман.'
+  },
+  {
+    id: 'learn-git-branching',
+    title: 'Learn Git Branching',
+    author: 'Peter Cottle',
+    platform: 'learngitbranching.js.org',
+    url: 'https://learngitbranching.js.org/',
+    level: 'beginner→intermediate',
+    access: 'free',
+    updated: 'evergreen',
+    topics: [],
+    areas: ['git'],
+    why: 'Бесплатный интерактивный тренажёр: визуализирует ветки и команды прямо в браузере. Лучший способ прочувствовать rebase и merge руками, без вложений.'
+  },
+
+  // --- Node.js / бэкенд (область вне vault) ---
+  {
+    id: 'jonas-node',
+    title: 'Node.js, Express, MongoDB & More: The Complete Bootcamp',
+    author: 'Jonas Schmedtmann',
+    platform: 'Udemy',
+    url: 'https://www.udemy.com/course/nodejs-express-mongodb-bootcamp/',
+    hours: 42,
+    level: 'intermediate',
+    access: 'paid',
+    updated: 'обновлён 11.2024 (староват, но основа актуальна)',
+    topics: [],
+    areas: ['nodejs'],
+    why: 'Путь от «знаю JS» к «умею писать API»: Express, MongoDB, аутентификация, продакшн-паттерны. 4.6. Обновлялся в 2024, но фундамент Node/Express не устарел.'
+  },
+
+  // --- Веб-безопасность (область вне vault) ---
+  {
+    id: 'kinney-web-security',
+    title: 'Web Security, v2',
+    author: 'Steve Kinney',
+    platform: 'Frontend Masters',
+    url: 'https://frontendmasters.com/courses/web-security-v2/',
+    hours: 4.5,
+    level: 'intermediate',
+    access: 'subscription',
+    updated: 'v2, август 2024',
+    topics: [],
+    areas: ['security'],
+    why: 'XSS, CSRF, SQL-инъекции, перехват сессий, CSP, на практике и с инструментами. Базовый набор угроз, который должен знать любой веб-разработчик.'
+  },
+  {
+    id: 'portswigger-academy',
+    title: 'Web Security Academy',
+    author: 'PortSwigger',
+    platform: 'portswigger.net',
+    url: 'https://portswigger.net/web-security',
+    level: 'beginner→expert',
+    access: 'free',
+    updated: 'evergreen',
+    topics: [],
+    areas: ['security'],
+    why: 'Бесплатно и лучший в классе: 250+ интерактивных лабораторий по веб-уязвимостям от авторов Burp Suite. Учишься, ломая специально уязвимые приложения. Глубже любого видео-курса.'
+  },
+
+  // --- Анимации (область вне vault) ---
+  {
+    id: 'kowalski-animations',
+    title: 'Animations on the Web',
+    author: 'Emil Kowalski',
+    platform: 'animations.dev',
+    url: 'https://animations.dev/',
+    level: 'intermediate',
+    access: 'paid',
+    updated: 'актуален (Motion / Framer Motion)',
+    topics: [],
+    areas: ['animation'],
+    why: 'Не «как заставить двигаться», а «как сделать хорошо»: CSS-анимации и Motion, easing, оркестрация, prefers-reduced-motion, производительность. Автор Sonner/Vaul, инженер Linear. Взгляд практика, а не докладчика.'
   }
 ]
 
