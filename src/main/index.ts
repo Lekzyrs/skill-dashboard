@@ -11,7 +11,9 @@ function createWindow(): void {
     width: 1100,
     height: 760,
     show: false,
-    backgroundColor: '#0b0b0e',
+    // В тон --bg (oklch(0.205 0.016 295)) — холодный фиолетовый сумрак, не нейтральный near-black,
+    // чтобы при ресайзе/старте не мелькал фон не в тон теме.
+    backgroundColor: '#18161e',
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
       contextIsolation: true,
