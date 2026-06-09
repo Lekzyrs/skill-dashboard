@@ -1,5 +1,10 @@
 import { contextBridge, ipcRenderer, type IpcRendererEvent } from 'electron'
-import type { SetLevelArgs, VaultState } from '../shared/types'
+import type {
+  SetCourseStatusArgs,
+  SetLevelArgs,
+  ToggleMilestoneArgs,
+  VaultState
+} from '../shared/types'
 
 // Единственная точка, через которую renderer общается с main.
 const api = {
@@ -11,6 +16,12 @@ const api = {
   setLevel: (args: SetLevelArgs): Promise<VaultState> => ipcRenderer.invoke('vault:setLevel', args),
   /** Открыть ссылку курса во внешнем браузере. */
   openExternal: (url: string): Promise<void> => ipcRenderer.invoke('open:external', url),
+  /** Записать статус прохождения курса, вернуть обновлённое состояние. */
+  setCourseStatus: (args: SetCourseStatusArgs): Promise<VaultState> =>
+    ipcRenderer.invoke('courses:setStatus', args),
+  /** Переключить веху курса, вернуть обновлённое состояние. */
+  toggleMilestone: (args: ToggleMilestoneArgs): Promise<VaultState> =>
+    ipcRenderer.invoke('courses:toggleMilestone', args),
   /** Подписаться на внешние изменения базы знаний. Возвращает функцию отписки. */
   onVaultChanged: (cb: (state: VaultState) => void): (() => void) => {
     const listener = (_e: IpcRendererEvent, state: VaultState): void => cb(state)

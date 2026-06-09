@@ -25,6 +25,11 @@ export interface Course {
   topics: string[]
   /** Общие области фронтенда вне vault (см. AREAS). Необязательно. */
   areas?: string[]
+  /**
+   * Вехи прохождения — сжатые из реального syllabus фазы, в заголовке диапазон разделов Udemy
+   * (напр. '1-5 · Основы'). Есть только у курсов с разделами (Udemy); у остальных трекинг 3-state.
+   */
+  milestones?: string[]
   /** Почему именно он. Конкретно, без рекламных оборотов. */
   why: string
 }
@@ -66,6 +71,15 @@ export const COURSES: Course[] = [
   // --- React ---
   {
     id: 'max-react-complete-guide',
+    milestones: [
+      '1-5 · Основы React и JSX',
+      '6-9 · Стилизация, рефы, дебаг',
+      '10-14 · Состояние, эффекты, контекст',
+      '15-19 · HTTP, кастомные хуки, формы',
+      '20-24 · Redux, роутинг, деплой',
+      '25-29 · React Query, Next.js, RSC, паттерны',
+      '30-33 · Тесты, TypeScript, итог'
+    ],
     title: 'React - The Complete Guide (incl. Next.js, Redux)',
     author: 'Maximilian Schwarzmüller',
     platform: 'Udemy',
@@ -78,6 +92,14 @@ export const COURSES: Course[] = [
   },
   {
     id: 'jonas-ultimate-react',
+    milestones: [
+      '2-8 · Часть 1: основы React',
+      '9-14 · Часть 2: как работает React, эффекты',
+      '15-20 · Часть 3: useReducer, Router, Redux',
+      '21-25 · Часть 4а: Router data, Redux, Styled Components',
+      '26-30 · Часть 4б: Supabase, React Query, паттерны',
+      '31-38 · Часть 5: фуллстек с Next.js'
+    ],
     title: 'The Ultimate React Course 2025: React, Next.js, Redux & More',
     author: 'Jonas Schmedtmann',
     platform: 'Udemy',
@@ -117,6 +139,14 @@ export const COURSES: Course[] = [
   },
   {
     id: 'max-understanding-typescript',
+    milestones: [
+      '1-4 · Основы и компилятор',
+      '5-7 · Классы, интерфейсы, продвинутые типы',
+      '8-10 · Дженерики и выведение типов',
+      '11-13 · Декораторы и проект',
+      '14-17 · Модули, сборка, библиотеки',
+      '18-20 · Проекты: React и Node'
+    ],
     title: 'Understanding TypeScript',
     author: 'Maximilian Schwarzmüller',
     platform: 'Udemy',
@@ -145,6 +175,14 @@ export const COURSES: Course[] = [
   // --- JS-ядро (один курс на несколько тем) ---
   {
     id: 'jonas-complete-js',
+    milestones: [
+      '2-3 · Основы JavaScript',
+      '5-7 · Инструменты и DOM',
+      '8-10 · Как работает JS, данные, функции',
+      '11-13 · Массивы, числа, продвинутый DOM',
+      '14-15 · ООП и проект Mapty',
+      '16-19 · Асинхронность, модули, деплой'
+    ],
     title: 'The Complete JavaScript Course 2025: From Zero to Expert!',
     author: 'Jonas Schmedtmann',
     platform: 'Udemy',
@@ -187,6 +225,15 @@ export const COURSES: Course[] = [
   // --- Алгоритмы (Big O) ---
   {
     id: 'colt-algorithms',
+    milestones: [
+      '2-5 · Big O и подход к задачам',
+      '7-9 · Рекурсия',
+      '10-17 · Поиск и сортировки',
+      '18-21 · Списки, стеки, очереди',
+      '22-24 · Деревья и кучи',
+      '25-27 · Хеш-таблицы и графы',
+      '28-29 · Дейкстра и динамическое программирование'
+    ],
     title: 'JavaScript Algorithms and Data Structures Masterclass',
     author: 'Colt Steele',
     platform: 'Udemy',
@@ -200,6 +247,13 @@ export const COURSES: Course[] = [
   },
   {
     id: 'neagoie-coding-interview',
+    milestones: [
+      '3-4 · Big O и решение задач',
+      '5-7 · Структуры: массивы, хеш-таблицы',
+      '8-11 · Списки, стеки, деревья, графы',
+      '12-15 · Алгоритмы: рекурсия, сортировки, поиск, ДП',
+      '16-20 · Интервью, оффер, практика'
+    ],
     title: 'Master the Coding Interview: Data Structures + Algorithms',
     author: 'Andrei Neagoie',
     platform: 'Udemy',
@@ -230,6 +284,13 @@ export const COURSES: Course[] = [
   // --- CSS и вёрстка (область вне vault) ---
   {
     id: 'jonas-html-css',
+    milestones: [
+      '1-2 · Старт и HTML',
+      '3-4 · CSS и раскладки',
+      '5-6 · Веб-дизайн и компоненты',
+      '7-8 · Omnifood: десктоп и адаптив',
+      '9 · Эффекты, оптимизация, деплой'
+    ],
     title: 'Build Responsive Real-World Websites with HTML and CSS',
     author: 'Jonas Schmedtmann',
     platform: 'Udemy',
@@ -288,6 +349,13 @@ export const COURSES: Course[] = [
   // --- Next.js (область вне vault) ---
   {
     id: 'max-nextjs',
+    milestones: [
+      '3-5 · App Router: основы, роутинг, данные',
+      '6-9 · Мутации, кэш, оптимизация, авторизация',
+      '11-14 · Pages Router: роутинг и пререндер',
+      '15-19 · API Routes, состояние, блог-проект',
+      '20-21 · Деплой и авторизация'
+    ],
     title: 'Next.js & React - The Complete Guide',
     author: 'Maximilian Schwarzmüller',
     platform: 'Udemy',
@@ -362,6 +430,14 @@ export const COURSES: Course[] = [
   // --- Git (область вне vault) ---
   {
     id: 'colt-git',
+    milestones: [
+      '2-5 · Установка и основы коммитов',
+      '6-8 · Ветки, слияние, diff',
+      '9-10 · Stash и отмена изменений',
+      '11-14 · GitHub и совместная работа',
+      '15-17 · Rebase и теги',
+      '18-20 · Внутреннее устройство, reflog, алиасы'
+    ],
     title: 'The Git & GitHub Bootcamp',
     author: 'Colt Steele',
     platform: 'Udemy',
@@ -390,6 +466,13 @@ export const COURSES: Course[] = [
   // --- Node.js / бэкенд (область вне vault) ---
   {
     id: 'jonas-node',
+    milestones: [
+      '2-4 · Основы Node.js и бэкенда',
+      '6 · Express и API Natours',
+      '7-8 · MongoDB и Mongoose',
+      '9-11 · Ошибки, авторизация, моделирование',
+      '12-14 · Рендеринг, фичи, деплой'
+    ],
     title: 'Node.js, Express, MongoDB & More: The Complete Bootcamp',
     author: 'Jonas Schmedtmann',
     platform: 'Udemy',

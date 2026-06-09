@@ -1,3 +1,33 @@
+.summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.summaryText {
+  flex: none;
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+.bar {
+  flex: 1;
+  max-width: 160px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.barFill {
+  display: block;
+  height: 100%;
+  border-radius: 2px;
+  background: var(--accent);
+  transition: width var(--dur) var(--ease);
+}
+
 .list {
   list-style: none;
   margin: 0;
@@ -16,11 +46,18 @@
   padding-top: 4px;
 }
 
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
 .title {
   display: inline-flex;
   align-items: baseline;
   gap: 6px;
-  max-width: 100%;
+  min-width: 0;
   padding: 0;
   border: none;
   background: transparent;
@@ -36,6 +73,7 @@
 }
 
 .titleText {
+  min-width: 0;
   text-decoration-line: underline;
   text-decoration-color: var(--line);
   text-underline-offset: 3px;
@@ -57,8 +95,119 @@
   color: var(--accent);
 }
 
+/* статус прохождения — чип, клик прокручивает не начат → в процессе → пройден */
+.status {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 9.5ch;
+  padding: 3px 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.75rem;
+  white-space: nowrap;
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease),
+    background var(--dur) var(--ease);
+}
+
+.status:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--ink);
+}
+
+.status:disabled {
+  cursor: default;
+}
+
+.statusGlyph {
+  font-size: 0.8125rem;
+  line-height: 1;
+}
+
+/* в процессе — фиолетовый контур и текст, без заливки */
+.status.in-progress {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* пройден — сплошная фиолетовая заливка */
+.status.done {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+/* курс с разделами — кнопка прогресса (k/n · %) раскрывает чеклист вех */
+.progressToggle {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-control);
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  transition: color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+.progressToggle:hover {
+  color: var(--ink);
+  border-color: var(--accent);
+}
+
+.caret {
+  color: var(--faint);
+  transition: transform var(--dur) var(--ease);
+}
+
+.caretOpen {
+  transform: rotate(90deg);
+}
+
+.progressBar {
+  display: block;
+  margin-top: 10px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.checklist {
+  list-style: none;
+  margin: 12px 0 2px;
+  padding: 0 0 0 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.875rem;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.check input {
+  accent-color: var(--accent);
+}
+
+.check input:disabled {
+  cursor: default;
+}
+
 .meta {
-  margin-top: 4px;
+  margin-top: 10px;
   font-size: 0.8125rem;
   color: var(--muted);
 }

@@ -1,4 +1,4 @@
-import type { Domain } from '../../../shared/types'
+import type { CourseMilestones, CourseProgress, CourseStatus, Domain } from '../../../shared/types'
 import { WEAK_THRESHOLD } from '../../../shared/derive'
 import { coursesForTopics } from '../../../shared/courses'
 import { SkillScale } from './SkillScale'
@@ -8,12 +8,26 @@ import styles from './DomainDetail.module.css'
 interface Props {
   domain: Domain
   busy: boolean
+  courseProgress: CourseProgress
+  courseMilestones: CourseMilestones
   onBack: () => void
   onSetLevel: (relativePath: string, skillName: string, level: number) => void
   onOpenCourse: (url: string) => void
+  onSetCourseStatus: (courseId: string, status: CourseStatus) => void
+  onToggleMilestone: (courseId: string, index: number) => void
 }
 
-export function DomainDetail({ domain, busy, onBack, onSetLevel, onOpenCourse }: Props) {
+export function DomainDetail({
+  domain,
+  busy,
+  courseProgress,
+  courseMilestones,
+  onBack,
+  onSetLevel,
+  onOpenCourse,
+  onSetCourseStatus,
+  onToggleMilestone
+}: Props) {
   // Почти все домены = 1 заметка: тогда название заметки идёт подзаголовком в шапку,
   // а не вторым заголовком уровнем ниже (он дублировал бы домен и его уровень).
   const single = domain.topics.length === 1
@@ -74,7 +88,15 @@ export function DomainDetail({ domain, busy, onBack, onSetLevel, onOpenCourse }:
       {courses.length > 0 && (
         <section className={styles.courses}>
           <h2 className={styles.coursesHead}>Курсы</h2>
-          <CourseList courses={courses} onOpen={onOpenCourse} />
+          <CourseList
+            courses={courses}
+            progress={courseProgress}
+            milestones={courseMilestones}
+            busy={busy}
+            onOpen={onOpenCourse}
+            onSetStatus={onSetCourseStatus}
+            onToggleMilestone={onToggleMilestone}
+          />
         </section>
       )}
     </div>

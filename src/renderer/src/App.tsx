@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import type { VaultState } from '../../shared/types'
+import type { CourseStatus, VaultState } from '../../shared/types'
 import { Overview } from './components/Overview'
 import { DomainDetail } from './components/DomainDetail'
 import styles from './App.module.css'
@@ -26,6 +26,24 @@ export function App() {
     setBusy(true)
     try {
       setState(await window.api.setLevel({ relativePath, skillName, level }))
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  async function setCourseStatus(courseId: string, status: CourseStatus) {
+    setBusy(true)
+    try {
+      setState(await window.api.setCourseStatus({ courseId, status }))
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  async function toggleMilestone(courseId: string, index: number) {
+    setBusy(true)
+    try {
+      setState(await window.api.toggleMilestone({ courseId, index }))
     } finally {
       setBusy(false)
     }
@@ -75,17 +93,26 @@ export function App() {
           <DomainDetail
             domain={activeDomain}
             busy={busy}
+            courseProgress={state.courseProgress}
+            courseMilestones={state.courseMilestones}
             onBack={() => setView({ kind: 'overview' })}
             onSetLevel={setLevel}
             onOpenCourse={window.api.openExternal}
+            onSetCourseStatus={setCourseStatus}
+            onToggleMilestone={toggleMilestone}
           />
         ) : (
           <Overview
             tree={state.tree}
             path={state.path}
+            busy={busy}
+            courseProgress={state.courseProgress}
+            courseMilestones={state.courseMilestones}
             onOpenDomain={(name) => setView({ kind: 'domain', name })}
             onChoose={choose}
             onOpenCourse={window.api.openExternal}
+            onSetCourseStatus={setCourseStatus}
+            onToggleMilestone={toggleMilestone}
           />
         )}
       </div>

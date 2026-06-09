@@ -1,6 +1,11 @@
 /// <reference types="vite/client" />
 
-import type { SetLevelArgs, VaultState } from '../../shared/types'
+import type {
+  SetCourseStatusArgs,
+  SetLevelArgs,
+  ToggleMilestoneArgs,
+  VaultState
+} from '../../shared/types'
 
 // Тип того, что preload кладёт в window через contextBridge.
 declare global {
@@ -10,6 +15,8 @@ declare global {
       chooseVault: () => Promise<VaultState>
       setLevel: (args: SetLevelArgs) => Promise<VaultState>
       openExternal: (url: string) => Promise<void>
+      setCourseStatus: (args: SetCourseStatusArgs) => Promise<VaultState>
+      toggleMilestone: (args: ToggleMilestoneArgs) => Promise<VaultState>
       onVaultChanged: (cb: (state: VaultState) => void) => () => void
     }
   }

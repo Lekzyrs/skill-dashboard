@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import type { Domain } from '../../../shared/types'
+import type { CourseMilestones, CourseProgress, CourseStatus, Domain } from '../../../shared/types'
 import { weakestSkills, WEAK_THRESHOLD } from '../../../shared/derive'
 import { AREAS, coursesForArea } from '../../../shared/courses'
 import { CourseList } from './CourseList'
@@ -10,16 +10,32 @@ const DOTS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 interface Props {
   tree: Domain[]
   path: string
+  busy: boolean
+  courseProgress: CourseProgress
+  courseMilestones: CourseMilestones
   onOpenDomain: (name: string) => void
   onChoose: () => void
   onOpenCourse: (url: string) => void
+  onSetCourseStatus: (courseId: string, status: CourseStatus) => void
+  onToggleMilestone: (courseId: string, index: number) => void
 }
 
 function round1(n: number): number {
   return Math.round(n * 10) / 10
 }
 
-export function Overview({ tree, path, onOpenDomain, onChoose, onOpenCourse }: Props) {
+export function Overview({
+  tree,
+  path,
+  busy,
+  courseProgress,
+  courseMilestones,
+  onOpenDomain,
+  onChoose,
+  onOpenCourse,
+  onSetCourseStatus,
+  onToggleMilestone
+}: Props) {
   const overall = tree.length ? round1(tree.reduce((s, d) => s + d.level, 0) / tree.length) : 0
   const weak = weakestSkills(tree, 5)
   const [openArea, setOpenArea] = useState<string | null>(null)
@@ -143,7 +159,15 @@ export function Overview({ tree, path, onOpenDomain, onChoose, onOpenCourse }: P
               </button>
               {open && (
                 <div className={styles.areaCourses}>
-                  <CourseList courses={courses} onOpen={onOpenCourse} />
+                  <CourseList
+                    courses={courses}
+                    progress={courseProgress}
+                    milestones={courseMilestones}
+                    busy={busy}
+                    onOpen={onOpenCourse}
+                    onSetStatus={onSetCourseStatus}
+                    onToggleMilestone={onToggleMilestone}
+                  />
                 </div>
               )}
             </div>
