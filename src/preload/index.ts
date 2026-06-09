@@ -9,6 +9,8 @@ const api = {
   chooseVault: (): Promise<VaultState> => ipcRenderer.invoke('vault:choose'),
   /** Записать уровень навыка обратно в заметку, вернуть обновлённое состояние. */
   setLevel: (args: SetLevelArgs): Promise<VaultState> => ipcRenderer.invoke('vault:setLevel', args),
+  /** Открыть ссылку курса во внешнем браузере. */
+  openExternal: (url: string): Promise<void> => ipcRenderer.invoke('open:external', url),
   /** Подписаться на внешние изменения базы знаний. Возвращает функцию отписки. */
   onVaultChanged: (cb: (state: VaultState) => void): (() => void) => {
     const listener = (_e: IpcRendererEvent, state: VaultState): void => cb(state)

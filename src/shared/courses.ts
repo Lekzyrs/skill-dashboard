@@ -128,6 +128,19 @@ export const COURSES: Course[] = [
     topics: [TS_GENERICS, DECORATORS],
     why: 'Ровный путь от основ до generics и декораторов (отдельный раздел), с интеграцией в React/Node. 4.7, обновлён в 2026. Бери как базу перед Total TypeScript, если generics пока на 2-4.'
   },
+  {
+    id: 'north-intermediate-ts',
+    title: 'Intermediate TypeScript, v2',
+    author: 'Mike North',
+    platform: 'Frontend Masters',
+    url: 'https://frontendmasters.com/courses/intermediate-typescript-v2/',
+    hours: 5,
+    level: 'intermediate→advanced',
+    access: 'subscription',
+    updated: 'v2, 2023',
+    topics: [TS_GENERICS],
+    why: 'Прямо по теме: продвинутые дженерики, условные и mapped-типы, top/bottom-типы, ES-модули. Сжато, 5 часов, по делу. По подписке FM, в пару к Total TypeScript. Нужна база - у Норта есть TypeScript Fundamentals.'
+  },
 
   // --- JS-ядро (один курс на несколько тем) ---
   {
@@ -157,6 +170,20 @@ export const COURSES: Course[] = [
     why: 'Строит точные ментальные модели замыканий, this/OOP и асинхронности (event loop, promises), глубже обзорных курсов. По подписке Frontend Masters. Бери, когда база есть, но «почему так» не щёлкает.'
   },
 
+  {
+    id: 'simpson-deep-js',
+    title: 'Deep JavaScript Foundations, v3',
+    author: 'Kyle Simpson',
+    platform: 'Frontend Masters',
+    url: 'https://frontendmasters.com/courses/deep-javascript-v3/',
+    hours: 10.5,
+    level: 'intermediate→advanced',
+    access: 'subscription',
+    updated: 'v3, запись 2019 (фундамент языка не устарел)',
+    topics: [CLOSURES, THIS, PROTOTYPES],
+    why: 'Глубже всех про ядро языка: типы и приведение, область видимости и замыкания, this и прототипную модель ООП. Автор серии «You Don’t Know JS». По подписке FM. Бери, когда нужно «как устроено под капотом», а не рецепты.'
+  },
+
   // --- Алгоритмы (Big O) ---
   {
     id: 'colt-algorithms',
@@ -170,6 +197,19 @@ export const COURSES: Course[] = [
     updated: 'обновлён 01.2026',
     topics: [BIG_O],
     why: 'От Big O и паттернов (частотный счётчик, два указателя, скользящее окно) до сортировок и структур данных, всё на JS. Эталонный курс по DSA для фронтендера, недорогой.'
+  },
+  {
+    id: 'neagoie-coding-interview',
+    title: 'Master the Coding Interview: Data Structures + Algorithms',
+    author: 'Andrei Neagoie',
+    platform: 'Udemy',
+    url: 'https://www.udemy.com/course/master-the-coding-interview-data-structures-algorithms/',
+    hours: 20,
+    level: 'beginner→intermediate',
+    access: 'paid',
+    updated: 'обновлён 05.2026',
+    topics: [BIG_O],
+    why: 'Начинается ровно с Big O и анализа сложности, затем структуры данных и алгоритмы под собеседования, всё на JS. 4.7 на 40k. В пару к Colt Steele, если цель - пройти алгоритмическую секцию интервью.'
   },
 
   // --- AST / Babel / ESLint ---
@@ -188,6 +228,20 @@ export const COURSES: Course[] = [
   },
 
   // --- CSS и вёрстка (область вне vault) ---
+  {
+    id: 'jonas-html-css',
+    title: 'Build Responsive Real-World Websites with HTML and CSS',
+    author: 'Jonas Schmedtmann',
+    platform: 'Udemy',
+    url: 'https://www.udemy.com/course/design-and-develop-a-killer-website-with-html5-and-css3/',
+    hours: 37.5,
+    level: 'beginner→intermediate',
+    access: 'paid',
+    updated: 'обновлён 01.2026',
+    topics: [],
+    areas: ['css'],
+    why: 'Фундамент HTML и CSS с нуля до боевого адаптивного сайта: семантика, box model, flexbox, CSS Grid, проект Omnifood. 4.7 на 118k оценок, обновлён в 2026. Дополняет Comeau снизу структурной базой, если CSS держится на наитии.'
+  },
   {
     id: 'comeau-css-for-js',
     title: 'CSS for JavaScript Developers',
@@ -397,6 +451,21 @@ export const COURSES: Course[] = [
 /** Курсы каталога, покрывающие тему (по relativePath заметки). Связь курс↔тема. */
 export function coursesForTopic(relativePath: string): Course[] {
   return COURSES.filter((c) => c.topics.includes(relativePath))
+}
+
+/** Курсы по нескольким темам, объединённые без дублей (каждый курс один раз, порядок тем). */
+export function coursesForTopics(relativePaths: string[]): Course[] {
+  const seen = new Set<string>()
+  const out: Course[] = []
+  for (const rel of relativePaths) {
+    for (const c of coursesForTopic(rel)) {
+      if (!seen.has(c.id)) {
+        seen.add(c.id)
+        out.push(c)
+      }
+    }
+  }
+  return out
 }
 
 /** Курсы каталога по общей области фронтенда (CSS, тестирование, ...). */

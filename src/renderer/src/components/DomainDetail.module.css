@@ -126,3 +126,16 @@
   font-size: 0.875rem;
   color: var(--muted);
 }
+
+.courses {
+  margin-top: 8px;
+  padding-top: 22px;
+  border-top: 1px solid var(--line);
+}
+
+.coursesHead {
+  margin-bottom: 6px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--muted);
+}

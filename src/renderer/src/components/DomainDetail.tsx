@@ -1,6 +1,8 @@
 import type { Domain } from '../../../shared/types'
 import { WEAK_THRESHOLD } from '../../../shared/derive'
+import { coursesForTopics } from '../../../shared/courses'
 import { SkillScale } from './SkillScale'
+import { CourseList } from './CourseList'
 import styles from './DomainDetail.module.css'
 
 interface Props {
@@ -8,12 +10,16 @@ interface Props {
   busy: boolean
   onBack: () => void
   onSetLevel: (relativePath: string, skillName: string, level: number) => void
+  onOpenCourse: (url: string) => void
 }
 
-export function DomainDetail({ domain, busy, onBack, onSetLevel }: Props) {
+export function DomainDetail({ domain, busy, onBack, onSetLevel, onOpenCourse }: Props) {
   // Почти все домены = 1 заметка: тогда название заметки идёт подзаголовком в шапку,
   // а не вторым заголовком уровнем ниже (он дублировал бы домен и его уровень).
   const single = domain.topics.length === 1
+  // Курсы — на уровне домена: курс часто покрывает несколько тем (в js один курс на 5),
+  // поэтому объединяем по темам и дедупим, иначе он повторился бы под каждой темой.
+  const courses = coursesForTopics(domain.topics.map((t) => t.relativePath))
 
   return (
     <div className={styles.wrap}>
@@ -64,6 +70,13 @@ export function DomainDetail({ domain, busy, onBack, onSetLevel }: Props) {
           )}
         </section>
       ))}
+
+      {courses.length > 0 && (
+        <section className={styles.courses}>
+          <h2 className={styles.coursesHead}>Курсы</h2>
+          <CourseList courses={courses} onOpen={onOpenCourse} />
+        </section>
+      )}
     </div>
   )
 }

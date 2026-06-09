@@ -234,6 +234,83 @@
   color: var(--accent);
 }
 
+/* «Пригодится фронтендеру» — области вне vault */
+.areas {
+  margin-top: 44px;
+  display: flex;
+  flex-direction: column;
+}
+
+.areas .sectionHead {
+  margin: 0 0 6px 12px;
+}
+
+.areaGroup {
+  border-top: 1px solid var(--line);
+}
+
+.areaGroup:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.areaRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 14px 12px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  text-align: left;
+  transition: background var(--dur) var(--ease);
+}
+
+.areaRow:hover {
+  background: var(--surface);
+}
+
+.areaText {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-right: auto;
+  min-width: 0;
+}
+
+.areaName {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.areaNote {
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+.areaCount {
+  flex: none;
+  font-size: 0.875rem;
+  color: var(--muted);
+}
+
+.caret {
+  flex: none;
+  width: 1ch;
+  color: var(--faint);
+  font-size: 1.1rem;
+  transition: transform var(--dur) var(--ease);
+}
+
+.caretOpen {
+  transform: rotate(90deg);
+}
+
+.areaCourses {
+  padding: 0 12px 14px 28px;
+}
+
 .footer {
   margin: 28px 0 0;
   font-size: 0.8125rem;

@@ -1,4 +1,4 @@
-import { dialog, ipcMain } from 'electron'
+import { dialog, ipcMain, shell } from 'electron'
 import { join } from 'node:path'
 import { getVaultPath, setVaultPath } from './config'
 import { readVault } from './vault/read'
@@ -44,5 +44,11 @@ export function registerVaultIpc(): void {
       console.error('[vault] не удалось записать уровень:', args, err)
     }
     return loadState()
+  })
+
+  // Открыть ссылку курса во внешнем браузере. Только http(s) — каталог наш, но не пускаем
+  // произвольные схемы (file:, javascript: и пр.) в shell.
+  ipcMain.handle('open:external', (_e, url: string) => {
+    if (/^https?:\/\//i.test(url)) return shell.openExternal(url)
   })
 }

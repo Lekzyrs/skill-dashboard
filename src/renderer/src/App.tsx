@@ -77,6 +77,7 @@ export function App() {
             busy={busy}
             onBack={() => setView({ kind: 'overview' })}
             onSetLevel={setLevel}
+            onOpenCourse={window.api.openExternal}
           />
         ) : (
           <Overview
@@ -84,6 +85,7 @@ export function App() {
             path={state.path}
             onOpenDomain={(name) => setView({ kind: 'domain', name })}
             onChoose={choose}
+            onOpenCourse={window.api.openExternal}
           />
         )}
       </div>

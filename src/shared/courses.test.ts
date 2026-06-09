@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { coursesForTopic, coursesForArea, COURSES, AREAS } from './courses'
+import { coursesForTopic, coursesForTopics, coursesForArea, COURSES, AREAS } from './courses'
 
 describe('coursesForTopic', () => {
   it('возвращает курсы, у которых тема есть в topics', () => {
@@ -21,6 +21,23 @@ describe('coursesForTopic', () => {
 
   it('тема без курсов → []', () => {
     expect(coursesForTopic('javascript/Несуществующая.md')).toEqual([])
+  })
+})
+
+describe('coursesForTopics', () => {
+  it('объединяет курсы по нескольким темам без дублей (каждый курс один раз)', () => {
+    const courses = coursesForTopics([
+      'javascript/Замыкания.md',
+      'javascript/Promise и async-await.md'
+    ])
+    const ids = courses.map((c) => c.id)
+    expect(new Set(ids).size).toBe(ids.length)
+    // jonas-complete-js покрывает обе темы — должен быть ровно один раз
+    expect(ids.filter((id) => id === 'jonas-complete-js')).toHaveLength(1)
+  })
+
+  it('пустой список тем → []', () => {
+    expect(coursesForTopics([])).toEqual([])
   })
 })
 

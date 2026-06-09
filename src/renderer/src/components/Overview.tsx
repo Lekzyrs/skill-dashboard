@@ -1,5 +1,8 @@
+import { useState } from 'react'
 import type { Domain } from '../../../shared/types'
 import { weakestSkills, WEAK_THRESHOLD } from '../../../shared/derive'
+import { AREAS, coursesForArea } from '../../../shared/courses'
+import { CourseList } from './CourseList'
 import styles from './Overview.module.css'
 
 const DOTS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -9,15 +12,17 @@ interface Props {
   path: string
   onOpenDomain: (name: string) => void
   onChoose: () => void
+  onOpenCourse: (url: string) => void
 }
 
 function round1(n: number): number {
   return Math.round(n * 10) / 10
 }
 
-export function Overview({ tree, path, onOpenDomain, onChoose }: Props) {
+export function Overview({ tree, path, onOpenDomain, onChoose, onOpenCourse }: Props) {
   const overall = tree.length ? round1(tree.reduce((s, d) => s + d.level, 0) / tree.length) : 0
   const weak = weakestSkills(tree, 5)
+  const [openArea, setOpenArea] = useState<string | null>(null)
 
   let totalSkills = 0
   let weakCount = 0
@@ -109,6 +114,41 @@ export function Overview({ tree, path, onOpenDomain, onChoose }: Props) {
             )}
           </div>
         ))}
+      </section>
+
+      <section className={styles.areas} aria-label="Пригодится фронтендеру">
+        <h2 className={styles.sectionHead}>Пригодится фронтендеру</h2>
+        {AREAS.map((area) => {
+          const courses = coursesForArea(area.id)
+          const open = openArea === area.id
+          return (
+            <div key={area.id} className={styles.areaGroup}>
+              <button
+                type="button"
+                className={styles.areaRow}
+                aria-expanded={open}
+                onClick={() => setOpenArea(open ? null : area.id)}
+              >
+                <span className={styles.areaText}>
+                  <span className={styles.areaName}>{area.label}</span>
+                  <span className={styles.areaNote}>{area.note}</span>
+                </span>
+                <span className={`num ${styles.areaCount}`}>{courses.length}</span>
+                <span
+                  className={`${styles.caret} ${open ? styles.caretOpen : ''}`}
+                  aria-hidden="true"
+                >
+                  ›
+                </span>
+              </button>
+              {open && (
+                <div className={styles.areaCourses}>
+                  <CourseList courses={courses} onOpen={onOpenCourse} />
+                </div>
+              )}
+            </div>
+          )
+        })}
       </section>
 
       <p className={styles.footer}>
